@@ -77,7 +77,7 @@ function parseArgs() {
 }
 
 const args = parseArgs();
-const apiUrl = args.flomo_api_url || "";
+const apiUrl = args.flomo_api_url || process.env.FLOMO_API_URL || "";
 
 
 /**
@@ -96,9 +96,7 @@ server.setRequestHandler(CallToolRequestSchema, async (request) => {
         throw new Error("Content is required");
       }
 
-      // const apiUrl =
-      //   "https://flomoapp.com/iwh/MTM4OTM0Mg/3340efa4a1197cb5a87f8542406c675b/";
-
+     
       const flomo = new FlomoClient({ apiUrl });
       const result = await flomo.writeNote({ content });
 
