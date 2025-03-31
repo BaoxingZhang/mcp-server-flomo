@@ -1,70 +1,21 @@
-# mcp-server-flomo MCP Server
+## 创建MCP服务
+npx @modelcontextprotocol/create-server mcp-server-flomo
 
-record notes to flomo
 
-This is a TypeScript-based MCP server that implements a simple notes system. It demonstrates core MCP concepts by providing:
-
-- Resources representing text notes with URIs and metadata
-- Tools for creating new notes
-- Prompts for generating summaries of notes
-
-## Features
-
-### Resources
-- List and access notes via `note://` URIs
-- Each note has a title, content and metadata
-- Plain text mime type for simple content access
-
-### Tools
-- `create_note` - Create new text notes
-  - Takes title and content as required parameters
-  - Stores note in server state
-
-### Prompts
-- `summarize_notes` - Generate a summary of all stored notes
-  - Includes all note contents as embedded resources
-  - Returns structured prompt for LLM summarization
-
-## Development
-
-Install dependencies:
-```bash
+## 进入目录，安装依赖
+cd mcp-server-flomo
 npm install
-```
 
-Build the server:
-```bash
-npm run build
-```
 
-For development with auto-rebuild:
-```bash
+## 开启监听实时编译
 npm run watch
-```
 
-## Installation
-
-To use with Claude Desktop, add the server config:
-
-On MacOS: `~/Library/Application Support/Claude/claude_desktop_config.json`
-On Windows: `%APPDATA%/Claude/claude_desktop_config.json`
-
-```json
-{
-  "mcpServers": {
-    "mcp-server-flomo": {
-      "command": "/path/to/mcp-server-flomo/build/index.js"
-    }
-  }
-}
-```
-
-### Debugging
-
-Since MCP servers communicate over stdio, debugging can be challenging. We recommend using the [MCP Inspector](https://github.com/modelcontextprotocol/inspector), which is available as a package script:
-
-```bash
+## MCP 官方开发的一个调试工具
 npm run inspector
-```
+等价于这个命令 `npx @modelcontextprotocol/inspector build/index.js`
 
-The Inspector will provide a URL to access debugging tools in your browser.
+## 启动命令传递参数
+node build/index.js --flomo_api_url=https://flomoapp.com/iwh/xxx/xxx/
+
+## 环境变量传递参数
+FLOMO_API_URLhttps://flomoapp.com/iwh/MTM4OTM0Mg/3340efa4a1197cb5a87f8542406c675b/ node build/index.js
